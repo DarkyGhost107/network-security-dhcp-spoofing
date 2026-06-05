@@ -33,6 +33,7 @@ sudo python3 dhcp_spoof.py
 sudo python3 dhcp_spoof.py -i eth0 -g 192.168.1.50
 sudo python3 dhcp_spoof.py -g 192.168.1.50 --dns 192.168.1.50
 ```
+![Texto alternativo](https://github.com/DarkyGhost107/network-security-dhcp-spoofing/blob/main/screenshots/ej%20uso%20dhcp%20spoofing.png)
 
 ## 4. Requisitos
 
@@ -59,21 +60,7 @@ CLIENTE          ATACANTE (Rogue)      SERVIDOR LEGITIMO
 
 ## 6. Topologia de Red (GNS3)
 
-```
- +------------------+
- | SERVIDOR DHCP    | 192.168.1.1/24 - Pool: .100-.150
- +---------+--------+
-           |
- +---------+--------+
- |    SWITCH L2     |
- +-+----------+-----+
-   |          |
-+--+---+  +---+---------------+
-|CLIENTE|  |  ATACANTE         |
-| DHCP  |  |  Kali 192.168.1.50|
-|(vict.)|  |  Rogue DHCP ON    |
-+-------+  +-------------------+
-```
+![Texto alternativo](https://github.com/DarkyGhost107/network-security-dhcp-spoofing/blob/main/screenshots/topologia%20dhcp%20spoofing.png)
 
 ### Direccionamiento IP
 
@@ -83,22 +70,7 @@ CLIENTE          ATACANTE (Rogue)      SERVIDOR LEGITIMO
 | Atacante (Kali) | 192.168.1.50/24 | Servidor Rogue |
 | Cliente victima | asignada por rogue | Objetivo |
 
-## 7. Capturas de Pantalla
-
-Coloca tus capturas en `screenshots/`:
-- `screenshots/dhcp_legit_server.png` - Servidor legitimo activo
-- `screenshots/dhcp_rogue_running.png` - Script rogue ejecutandose
-- `screenshots/dhcp_client_got_fake.png` - Cliente recibiendo config falsa
-- `screenshots/dhcp_wireshark.png` - DORA malicioso en Wireshark
-
-```bash
-# En el cliente (Linux) - verificar configuracion recibida
-ip route show && ip addr show && cat /etc/resolv.conf
-# En el cliente (Windows)
-ipconfig /all
-```
-
-## 8. Contramedidas
+## 7. Contramedidas
 
 | Contramedida | Comando Cisco IOS | Descripcion |
 |---|---|---|
@@ -115,11 +87,15 @@ interface range GigabitEthernet0/2 - 24
  ip dhcp snooping limit rate 15
  no ip dhcp snooping trust
 ```
+![Texto alternativo](https://github.com/DarkyGhost107/network-security-dhcp-spoofing/blob/main/screenshots/contramedida%20dhcp%20spoofing.png)
 
-## 9. Referencias
+## 8. Referencias
 
 - [MITRE ATT&CK T1557 - Adversary-in-the-Middle](https://attack.mitre.org/techniques/T1557/)
 - [RFC 2131 - DHCP Protocol](https://datatracker.ietf.org/doc/html/rfc2131)
+
+## 9.Enlaces
+Video:https://youtu.be/vktMoTfjm38
 
 ---
 *Laboratorio de Seguridad de Redes | GNS3 | Uso educativo exclusivo*
